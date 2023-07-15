@@ -3,6 +3,7 @@ import { DatabaseContext } from '../App';
 import axios from 'axios';
 import { useContext, useEffect } from 'react';
 import '../stylesheets/HomePage.css'
+import HeaderContent from '../components/HeaderContent';
 
 function HomePage() {
 
@@ -27,7 +28,7 @@ function HomePage() {
 
   return (
       <div className='HomePage'>
-        
+        <HeaderContent />
       </div>
   )
 }
