@@ -1,5 +1,6 @@
 import { useContext } from 'react';
 import { DatabaseContext } from '../App'
+import HeaderContent from '../components/HeaderContent';
 import '../stylesheets/CountryPage.css'
 
 function CountryPage() {
@@ -10,7 +11,7 @@ function CountryPage() {
 
   return (
     <div className='CountryPage'>
-
+      <HeaderContent />
     </div>
   )
 }

@@ -1,13 +1,15 @@
 import { NavLink } from 'react-router-dom';
-import { DatabaseContext } from '../App';
+import { DatabaseContext, ThemeContext } from '../App';
 import axios from 'axios';
 import { useContext, useEffect } from 'react';
 import '../stylesheets/HomePage.css'
 import HeaderContent from '../components/HeaderContent';
+import Navbar from '../components/Navbar';
 
 function HomePage() {
 
   const { database, setDatabase } = useContext(DatabaseContext)
+  const { darkMode } = useContext(ThemeContext)
 
   useEffect(() => {
 
@@ -24,11 +26,16 @@ function HomePage() {
 
   },[])  
 
+  const handleClassThemeMain = darkMode == false ? 'main-home' : 'main-home dark'
+
   console.log(database)
 
   return (
       <div className='HomePage'>
         <HeaderContent />
+        <main className={handleClassThemeMain}>
+          <Navbar />
+        </main>
       </div>
   )
 }
