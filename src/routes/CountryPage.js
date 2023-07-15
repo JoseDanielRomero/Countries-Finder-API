@@ -7,8 +7,6 @@ function CountryPage() {
 
   const { database, setDatabase } = useContext(DatabaseContext)
 
-  console.log(database)
-
   return (
     <div className='CountryPage'>
       <HeaderContent />

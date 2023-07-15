@@ -22,8 +22,6 @@ function HeaderContent() {
     }
   }
 
-  console.log(darkMode)
-
   return (
     <header className={handleClassThemeHeader}>
       <h1 className={handleClassThemeLogo}>Where in the world?</h1>
