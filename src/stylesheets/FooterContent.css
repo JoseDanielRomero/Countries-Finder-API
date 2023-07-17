@@ -1,0 +1,10 @@
+.footer {
+    height: 15vh;
+    width: 100%;
+    background-color: hsl(0, 0%, 95%);
+    transition: ease background-color .2s;
+}
+
+.footer.dark {
+    background-color: hsl(207, 26%, 17%);
+}
