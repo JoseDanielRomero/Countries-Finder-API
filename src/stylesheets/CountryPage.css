@@ -8,3 +8,67 @@
     background-color: white;
 }
   
+.main-country {
+    height: 76vh;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    background-color: hsl(0, 0%, 95%);
+    transition: ease background-color .2s;
+}
+
+.main-country.dark {
+    background-color: hsl(207, 26%, 17%);
+}
+
+.navbar-country {
+    height: 6vh;
+    width: 80vw;
+    display: flex;
+    flex-direction: row;
+    align-items: stretch;
+    justify-content: flex-start;
+    margin: 5vh 0;
+}
+
+.back-button:link, .back-button:visited, .back-button:active {
+    text-decoration: none;
+    color: black;
+}
+
+.back-button {
+    width: auto;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0px 0px 8px 1px rgba(0,0,0,0.15);
+    -webkit-box-shadow: 0px 0px 8px 1px rgba(0,0,0,0.15);
+    -moz-box-shadow: 0px 0px 8px 1px rgba(0,0,0,0.15);
+    border-radius: 5px;
+    padding: 0 3%;
+    gap: 6px;
+    background-color: white;
+    color: black;
+    transition: ease background-color .2s;
+}
+
+.back-button.dark {
+    background-color: hsl(209, 23%, 22%);
+    color: white;
+}
+
+.back-button-image {
+    height: 15px;
+}
+
+.back-button-image.dark {
+    filter: invert(1);
+}
+
+.country-result-container {
+    height: 100%;
+    width: 100%;
+}

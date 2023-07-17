@@ -6,6 +6,7 @@ import { HashRouter, Routes, Route } from 'react-router-dom';
 export const DatabaseContext = createContext(null)
 export const ThemeContext = createContext(false)
 export const RegionContext = createContext(null)
+export const CountryContext = createContext(null)
 
 function App() {
   const options = [
@@ -20,18 +21,21 @@ function App() {
   const [database, setDatabase] = useState([])
   const [darkMode, setDarkMode] = useState(false)
   const [actualRegion, setActualRegion] = useState(options[0].value)
+  const [selectedCountry, setSelectedCountry] = useState('ECU')
 
   return (
     <>
       <DatabaseContext.Provider value={{ database, setDatabase }}>
         <ThemeContext.Provider value={{ darkMode, setDarkMode }}>
           <RegionContext.Provider value={{ actualRegion, setActualRegion }}>
-            <HashRouter>
-              <Routes>
-                <Route path='/' element={<HomePage options={options} />} />
-                <Route path='/country' element={<CountryPage />} />
-              </Routes>
-            </HashRouter>
+            <CountryContext.Provider value={{ selectedCountry, setSelectedCountry }}>
+              <HashRouter>
+                <Routes>
+                  <Route path='/' element={<HomePage options={options} />} />
+                  <Route path='/country' element={<CountryPage />} />
+                </Routes>
+              </HashRouter>
+            </CountryContext.Provider>
           </RegionContext.Provider>
         </ThemeContext.Provider>
       </DatabaseContext.Provider>

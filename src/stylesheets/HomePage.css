@@ -33,3 +33,27 @@
     justify-content: space-between; 
     padding: 2vh 0;
 }
+
+.country-card-container {
+    height: 100%;
+    width: 100%;
+    border-radius: 7px;
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    justify-content: stretch;
+    box-shadow: 0px 0px 8px 1px rgba(0,0,0,0.15);
+    -webkit-box-shadow: 0px 0px 8px 1px rgba(0,0,0,0.15);
+    -moz-box-shadow: 0px 0px 8px 1px rgba(0,0,0,0.15);
+    background-color: white;
+    transition: ease background-color .2s;
+}
+
+.country-card-container.dark {
+    background-color: hsl(209, 23%, 22%);
+}
+
+.navlink:link, .navlink:visited, .navlink:active {
+    text-decoration: none;
+    color: black;
+}

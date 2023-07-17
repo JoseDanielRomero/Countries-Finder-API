@@ -21,8 +21,8 @@ function Navbar({ options }) {
   }
 
   return (
-    <nav>
-      <form className={handleThemeSearch}>
+    <nav className='navbar-home'>
+      <form className={handleThemeSearch} id='input-search-from'>
         <button type='submit' className='input-submit' >
           <img className={handleThemeImage} src={searchIcon} />
         </button>

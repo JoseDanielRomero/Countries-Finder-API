@@ -1,5 +1,5 @@
 import { NavLink } from 'react-router-dom';
-import { DatabaseContext, RegionContext, ThemeContext } from '../App';
+import { DatabaseContext, RegionContext, ThemeContext, CountryContext } from '../App';
 import axios from 'axios';
 import { useContext, useEffect } from 'react';
 import '../stylesheets/HomePage.css'
@@ -13,6 +13,7 @@ function HomePage({ options }) {
   const { database, setDatabase } = useContext(DatabaseContext)
   const { darkMode } = useContext(ThemeContext)
   const { actualRegion, setActualRegion } = useContext(RegionContext)
+  const { selectedCountry, setSelectedCountry } = useContext(CountryContext)
 
   useEffect(() => {
 
@@ -31,6 +32,7 @@ function HomePage({ options }) {
   console.log(database)
 
   const handleClassThemeMain = darkMode == false ? 'main-home' : 'main-home dark'
+  const handleThemeCard = darkMode == false ? 'country-card-container' : 'country-card-container dark'
 
   return (
       <div className='HomePage'>
@@ -39,15 +41,23 @@ function HomePage({ options }) {
           <Navbar options={options} />
           <section className='main-content-section'>
             {database.map(card => {
+
+              const handleClickCard = () => {
+                setSelectedCountry(card.cca3)
+              }
+
               return (
-                <CountryCard
-                  key={card.cca3}
-                  countryName = {card.name.common}
-                  countryPopulation= {card.population}
-                  countryRegion = {card.region}
-                  countryCapital = {card.capital}
-                  countryFlag = {card.flags.png}
-                />
+                <NavLink to='/country' className='navlink' key={card.cca3}  onClick={handleClickCard} >
+                  <article className={handleThemeCard} >
+                    <CountryCard
+                      countryName = {card.name.common}
+                      countryPopulation= {card.population}
+                      countryRegion = {card.region}
+                      countryCapital = {card.capital}
+                      countryFlag = {card.flags.png}
+                    />
+                  </article>
+                </NavLink>
               )}
             )}
           </section>
