@@ -1,7 +1,7 @@
 import axios from 'axios';
 import { useContext, useEffect, useState } from 'react';
-import { NavLink } from 'react-router-dom';
-import { CountryContext, ThemeContext } from '../App'
+import { NavLink, useParams } from 'react-router-dom';
+import { ThemeContext } from '../App'
 import FooterContent from '../components/FooterContent';
 import HeaderContent from '../components/HeaderContent';
 import backIcon from '../images/back.png'
@@ -9,25 +9,26 @@ import '../stylesheets/CountryPage.css'
 
 function CountryPage() {
 
-  const [requestCountry, setRequestCountry] = useState(null)
+  const params = useParams()
+  const [requestCountry, setRequestCountry] = useState([])
   const { darkMode } = useContext(ThemeContext)
-  const { selectedCountry, setSelectedCountry } = useContext(CountryContext)
 
   useEffect(()=> {
 
     const obtainCountry = async() => {
 
-      const formatCode = selectedCountry.toLowerCase()
-      const url = 'https://restcountries.com/v3.1/alpha/' + formatCode
+      const url = 'https://restcountries.com/v3.1/alpha/' + params.idCountry
       const apiRequest = await axios.get(url)
 
-      setRequestCountry(apiRequest.data[0])
+      setRequestCountry(apiRequest.data)
 
     }
 
     obtainCountry()
 
-  },[selectedCountry])
+  },[requestCountry])
+
+  console.log(requestCountry)
 
   const handleThemeMain = darkMode == false ? 'main-country' : 'main-country dark'
   const handleThemeBackButton = darkMode == false ? 'back-button' : 'back-button dark'
@@ -43,9 +44,18 @@ function CountryPage() {
             <p>Back</p>
           </NavLink>
         </nav>
-        <article className='country-result-container'>
 
-        </article>
+        {requestCountry.map(country => {
+          return (
+            <article className='country-result-container' key={country.cca3}>
+              <img className='country-result-image' src={country.flags.png} />
+              <section className='country-result-info-box'>
+
+              </section>
+            </article>
+          )}
+        )}
+
       </main>
       <FooterContent />
     </div>

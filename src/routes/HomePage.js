@@ -1,5 +1,5 @@
 import { NavLink } from 'react-router-dom';
-import { DatabaseContext, RegionContext, ThemeContext, CountryContext } from '../App';
+import { DatabaseContext, RegionContext, ThemeContext } from '../App';
 import axios from 'axios';
 import { useContext, useEffect } from 'react';
 import '../stylesheets/HomePage.css'
@@ -13,7 +13,6 @@ function HomePage({ options }) {
   const { database, setDatabase } = useContext(DatabaseContext)
   const { darkMode } = useContext(ThemeContext)
   const { actualRegion, setActualRegion } = useContext(RegionContext)
-  const { selectedCountry, setSelectedCountry } = useContext(CountryContext)
 
   useEffect(() => {
 
@@ -29,8 +28,6 @@ function HomePage({ options }) {
 
   },[actualRegion])  
 
-  console.log(database)
-
   const handleClassThemeMain = darkMode == false ? 'main-home' : 'main-home dark'
   const handleThemeCard = darkMode == false ? 'country-card-container' : 'country-card-container dark'
 
@@ -42,12 +39,12 @@ function HomePage({ options }) {
           <section className='main-content-section'>
             {database.map(card => {
 
-              const handleClickCard = () => {
-                setSelectedCountry(card.cca3)
-              }
+              
+
+              const navlinkTo = '/country/' + (card.cca3).toLowerCase()
 
               return (
-                <NavLink to='/country' className='navlink' key={card.cca3}  onClick={handleClickCard} >
+                <NavLink to={navlinkTo} className='navlink' key={card.cca3} >
                   <article className={handleThemeCard} >
                     <CountryCard
                       countryName = {card.name.common}
