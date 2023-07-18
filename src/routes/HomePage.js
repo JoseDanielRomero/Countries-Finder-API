@@ -39,8 +39,6 @@ function HomePage({ options }) {
           <section className='main-content-section'>
             {database.map(card => {
 
-              
-
               const navlinkTo = '/country/' + (card.cca3).toLowerCase()
 
               return (

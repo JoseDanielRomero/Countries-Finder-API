@@ -16,14 +16,11 @@ function CountryPage() {
   useEffect(()=> {
 
     const obtainCountry = async() => {
-
       const url = 'https://restcountries.com/v3.1/alpha/' + params.idCountry
       const apiRequest = await axios.get(url)
 
       setRequestCountry(apiRequest.data)
-
     }
-
     obtainCountry()
 
   },[params])
@@ -35,6 +32,8 @@ function CountryPage() {
   const handleThemeBackButtonIcon = darkMode == false ? 'back-button-image' : 'back-button-image dark'
   const handleThemeInfoTitle = darkMode == false ? 'country-result-info-title' : 'country-result-info-title dark'
   const handleThemeItem = darkMode == false ? 'country-result-info-item' : 'country-result-info-item dark'
+  const handleThemeBorderButtons = darkMode == false ? 'border-countries-button' : 'border-countries-button dark'
+  const handleThemeBorderTitle = darkMode == false ? 'country-result-info-border-title' : 'country-result-info-border-title dark'
 
   return (
     <div className='CountryPage'>
@@ -69,6 +68,15 @@ function CountryPage() {
           }
           const currenciesFormat = resultIteration2.join(', ')
 
+          const copyCountry = {...country}
+          const keysCountry = Object.keys(copyCountry)
+          let borderCountries
+          if (keysCountry.includes('borders')) {
+            borderCountries = [...country.borders]
+          } else {
+            borderCountries = []
+          }
+
           return (
             <article className='country-result-container' key={country.cca3}>
               <img className='country-result-image' src={country.flags.png} />
@@ -88,11 +96,30 @@ function CountryPage() {
                     <p className={handleThemeItem}><b>Languages: </b>{languagesFormat}</p>
                   </div>
                 </div>
+                <div className='country-result-info-border-box'>
+                  <p className={handleThemeBorderTitle}><b>Border Countries:</b></p>
+                  <div className='country-result-info-border'>
+                  {borderCountries.map(border => {
+
+                    const navlinkTo = '/country/' + (border).toLowerCase()
+                    const lowerCase = (border).toLowerCase()
+                    const firstLetter = lowerCase.charAt(0)
+                    const firstLetterCap = firstLetter.toUpperCase()
+                    const remainingLetters = lowerCase.slice(1)
+                    const capitalizedWord = firstLetterCap + remainingLetters
+
+                    return (
+                      <NavLink to={navlinkTo} className={handleThemeBorderButtons} key={border}>
+                        {capitalizedWord}
+                      </NavLink>
+                    )}
+                  )}
+                  </div>
+                </div>
               </section>
             </article>
           )}
         )}
-
       </main>
       <FooterContent />
     </div>
