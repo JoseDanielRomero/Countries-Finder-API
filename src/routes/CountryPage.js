@@ -1,6 +1,6 @@
 import axios from 'axios';
 import { useContext, useEffect, useState } from 'react';
-import { Navigate, NavLink, useParams } from 'react-router-dom';
+import { NavLink, useParams } from 'react-router-dom';
 import { ThemeContext } from '../App'
 import FooterContent from '../components/FooterContent';
 import HeaderContent from '../components/HeaderContent';
@@ -22,7 +22,7 @@ function CountryPage() {
           setRequestCountry(apiRequest.data)
         })
         .catch(() => {
-          return <Navigate to='/404' />
+          console.log('Error 400, invalid country.')
         });
     }
     obtainCountry()

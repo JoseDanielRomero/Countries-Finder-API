@@ -10,7 +10,7 @@ function ErrorContent() {
   const handleThemeMain = darkMode == false ? 'main-country' : 'main-country dark'
 
   return (
-    <div className='ErrorContent'>
+    <div className='ErrorPage'>
       <HeaderContent />
       <main className={handleThemeMain}>
 
