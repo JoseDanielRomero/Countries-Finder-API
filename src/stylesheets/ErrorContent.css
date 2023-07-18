@@ -14,11 +14,47 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: flex-start;
+    justify-content: center;
     background-color: hsl(0, 0%, 95%);
     transition: ease background-color .2s;
 }
 
 .main-error.dark {
     background-color: hsl(207, 26%, 17%);
+}
+
+.main-error-image {
+    height: 50%;
+    transition: ease background-color .2s;
+}
+
+.main-error-image.dark {
+    filter: invert(1);
+}
+
+.main-error-title {
+    margin: 0;
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+.main-error-title.dark {
+    color: white;
+}
+
+.main-error-link {
+    font-size: 1.3rem;
+    color: blue;
+}
+
+.main-error-link.dark {
+    color: aqua;
+}
+
+.main-error-link:visited, .main-error-link-button:active {
+    text-decoration: none;
 }
