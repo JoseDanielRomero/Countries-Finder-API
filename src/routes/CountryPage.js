@@ -1,6 +1,6 @@
 import axios from 'axios';
 import { useContext, useEffect, useState } from 'react';
-import { NavLink, useParams } from 'react-router-dom';
+import { Navigate, NavLink, useParams } from 'react-router-dom';
 import { ThemeContext } from '../App'
 import FooterContent from '../components/FooterContent';
 import HeaderContent from '../components/HeaderContent';
@@ -18,14 +18,16 @@ function CountryPage() {
     const obtainCountry = async() => {
       const url = 'https://restcountries.com/v3.1/alpha/' + params.idCountry
       const apiRequest = await axios.get(url)
-
-      setRequestCountry(apiRequest.data)
+        .then((apiRequest) => {
+          setRequestCountry(apiRequest.data)
+        })
+        .catch(() => {
+          return <Navigate to='/404' />
+        });
     }
     obtainCountry()
 
   },[params])
-
-  console.log(requestCountry)
 
   const handleThemeMain = darkMode == false ? 'main-country' : 'main-country dark'
   const handleThemeBackButton = darkMode == false ? 'back-button' : 'back-button dark'
@@ -77,49 +79,65 @@ function CountryPage() {
             borderCountries = []
           }
 
-          return (
-            <article className='country-result-container' key={country.cca3}>
-              <img className='country-result-image' src={country.flags.png} />
-              <section className='country-result-info-box'>
-                <h2 className={handleThemeInfoTitle}>{country.name.common}</h2>
-                <div className='country-result-info-text'>
-                  <div className='country-result-info-column'>
-                    <p className={handleThemeItem}><b>Native name: </b>{country.name.nativeName[firstNativeKey].common}</p>
-                    <p className={handleThemeItem}><b>Population: </b>{country.population}</p>
-                    <p className={handleThemeItem}><b>Region: </b>{country.region}</p>
-                    <p className={handleThemeItem}><b>Sub Region: </b>{country.subregion}</p>
+          if (keysCountry.length > 28) {
+            return (
+              <article className='country-result-container' key={country.cca3}>
+                <img className='country-result-image' src={country.flags.png} />
+                <section className='country-result-info-box'>
+                  <h2 className={handleThemeInfoTitle}>{country.name.common}</h2>
+                  <div className='country-result-info-text'>
+                    <div className='country-result-info-column'>
+                      <p className={handleThemeItem}><b>Native name: </b>{country.name.nativeName[firstNativeKey].common}</p>
+                      <p className={handleThemeItem}><b>Population: </b>{country.population}</p>
+                      <p className={handleThemeItem}><b>Region: </b>{country.region}</p>
+                      <p className={handleThemeItem}><b>Sub Region: </b>{country.subregion}</p>
+                    </div>
+                    <div className='country-result-info-column'>
+                      <p className={handleThemeItem}><b>Capital: </b>{country.capital}</p>
+                      <p className={handleThemeItem}><b>Top Level Domain: </b>{country.tld}</p>
+                      <p className={handleThemeItem}><b>Currencies: </b>{currenciesFormat}</p>
+                      <p className={handleThemeItem}><b>Languages: </b>{languagesFormat}</p>
+                    </div>
                   </div>
-                  <div className='country-result-info-column'>
-                    <p className={handleThemeItem}><b>Capital: </b>{country.capital}</p>
-                    <p className={handleThemeItem}><b>Top Level Domain: </b>{country.tld}</p>
-                    <p className={handleThemeItem}><b>Currencies: </b>{currenciesFormat}</p>
-                    <p className={handleThemeItem}><b>Languages: </b>{languagesFormat}</p>
-                  </div>
-                </div>
-                <div className='country-result-info-border-box'>
-                  <p className={handleThemeBorderTitle}><b>Border Countries:</b></p>
-                  <div className='country-result-info-border'>
-                  {borderCountries.map(border => {
+                  <div className='country-result-info-border-box'>
+                    <p className={handleThemeBorderTitle}><b>Border Countries:</b></p>
+                    <div className='country-result-info-border'>
+                    {borderCountries.map(border => {
+                      const navlinkTo = '/country/' + (border).toLowerCase()
+                      const lowerCase = (border).toLowerCase()
+                      const firstLetter = lowerCase.charAt(0)
+                      const firstLetterCap = firstLetter.toUpperCase()
+                      const remainingLetters = lowerCase.slice(1)
+                      const capitalizedWord = firstLetterCap + remainingLetters
 
-                    const navlinkTo = '/country/' + (border).toLowerCase()
-                    const lowerCase = (border).toLowerCase()
-                    const firstLetter = lowerCase.charAt(0)
-                    const firstLetterCap = firstLetter.toUpperCase()
-                    const remainingLetters = lowerCase.slice(1)
-                    const capitalizedWord = firstLetterCap + remainingLetters
-
-                    return (
-                      <NavLink to={navlinkTo} className={handleThemeBorderButtons} key={border}>
-                        {capitalizedWord}
-                      </NavLink>
+                      return (
+                        <NavLink to={navlinkTo} className={handleThemeBorderButtons} key={border}>
+                          {capitalizedWord}
+                        </NavLink>
+                      )}
                     )}
-                  )}
+                    </div>
                   </div>
-                </div>
-              </section>
-            </article>
+                </section>
+              </article>
+          )} else {
+            return (
+              <article className='country-result-container' key={country.cca3}>
+                <img className='country-result-image' src={country.flags.png} />
+                <section className='country-result-info-box'>
+                  <h2 className={handleThemeInfoTitle}>{country.name.common}</h2>
+                  <div className='country-result-info-text'>
+                    <div className='country-result-info-column'>
+                      <p className={handleThemeItem}><b>Population: </b>{country.population}</p>
+                    </div>
+                  </div>
+                  <div className='country-result-info-border-box'>
+                    <p className={handleThemeBorderTitle}><b>Border Countries:</b></p>
+                  </div>
+                </section>
+              </article>
           )}
-        )}
+        })}
       </main>
       <FooterContent />
     </div>
