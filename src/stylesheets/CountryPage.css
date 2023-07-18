@@ -87,5 +87,39 @@
 .country-result-info-box {
     height: 270px;
     width: 55%;
-    border: 1px solid red;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: space-between;
+}
+
+.country-result-info-title {
+    font-size: 1.7rem;
+    color: black;
+    margin: 3% 0;
+}
+
+.country-result-info-title.dark {
+    color: white;
+}
+
+.country-result-info-text {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    justify-content: space-between;
+}
+
+.country-result-info-column {
+    width: 47%;
+}
+
+.country-result-info-item {
+    margin: 2% 0;
+    font-size: 1rem;
+}
+
+.country-result-info-item.dark {
+    color: white;
 }

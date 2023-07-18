@@ -26,13 +26,15 @@ function CountryPage() {
 
     obtainCountry()
 
-  },[requestCountry])
+  },[params])
 
   console.log(requestCountry)
 
   const handleThemeMain = darkMode == false ? 'main-country' : 'main-country dark'
   const handleThemeBackButton = darkMode == false ? 'back-button' : 'back-button dark'
   const handleThemeBackButtonIcon = darkMode == false ? 'back-button-image' : 'back-button-image dark'
+  const handleThemeInfoTitle = darkMode == false ? 'country-result-info-title' : 'country-result-info-title dark'
+  const handleThemeItem = darkMode == false ? 'country-result-info-item' : 'country-result-info-item dark'
 
   return (
     <div className='CountryPage'>
@@ -41,16 +43,51 @@ function CountryPage() {
         <nav className='navbar-country'>
           <NavLink to='/'className={handleThemeBackButton}>
             <img src={backIcon} className={handleThemeBackButtonIcon} />
-            <p>Back</p>
+            <p style={{fontSize: '.9rem'}}>Back</p>
           </NavLink>
         </nav>
 
         {requestCountry.map(country => {
+
+          const copyNativeName = {...country.name.nativeName}
+          const keysNative = Object.keys(copyNativeName)
+          const firstNativeKey = keysNative[0]
+
+          const copyLanguages = {...country.languages}
+          const keysLanguages = Object.values(copyLanguages)
+          const resultIteration = []
+          for (let i=0; i<keysLanguages.length; i++) {
+            resultIteration.push(keysLanguages[i])
+          }
+          const languagesFormat = resultIteration.join(', ')
+
+          const copyCurrencies = {...country.currencies}
+          const keysCurrencies = Object.values(copyCurrencies)
+          const resultIteration2 = []
+          for (let i=0; i<keysCurrencies.length; i++) {
+            resultIteration2.push(keysCurrencies[i].name)
+          }
+          const currenciesFormat = resultIteration2.join(', ')
+
           return (
             <article className='country-result-container' key={country.cca3}>
               <img className='country-result-image' src={country.flags.png} />
               <section className='country-result-info-box'>
-
+                <h2 className={handleThemeInfoTitle}>{country.name.common}</h2>
+                <div className='country-result-info-text'>
+                  <div className='country-result-info-column'>
+                    <p className={handleThemeItem}><b>Native name: </b>{country.name.nativeName[firstNativeKey].common}</p>
+                    <p className={handleThemeItem}><b>Population: </b>{country.population}</p>
+                    <p className={handleThemeItem}><b>Region: </b>{country.region}</p>
+                    <p className={handleThemeItem}><b>Sub Region: </b>{country.subregion}</p>
+                  </div>
+                  <div className='country-result-info-column'>
+                    <p className={handleThemeItem}><b>Capital: </b>{country.capital}</p>
+                    <p className={handleThemeItem}><b>Top Level Domain: </b>{country.tld}</p>
+                    <p className={handleThemeItem}><b>Currencies: </b>{currenciesFormat}</p>
+                    <p className={handleThemeItem}><b>Languages: </b>{languagesFormat}</p>
+                  </div>
+                </div>
               </section>
             </article>
           )}

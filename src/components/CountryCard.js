@@ -5,7 +5,6 @@ import '../stylesheets/CountryCard.css'
 function CountryCard({ countryName, countryPopulation, countryRegion, countryCapital, countryFlag }) {
   const { darkMode } = useContext(ThemeContext)
 
-  // const handleThemeCard = darkMode == false ? 'country-card-container' : 'country-card-container dark'
   const handleThemeTitle = darkMode == false ? 'country-card-title' : 'country-card-title dark'
   const handleThemeItem = darkMode == false ? 'country-card-item' : 'country-card-item dark'
 

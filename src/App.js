@@ -2,6 +2,7 @@ import CountryPage from './routes/CountryPage'
 import HomePage from './routes/HomePage'
 import { createContext, useState } from 'react';
 import { HashRouter, Routes, Route } from 'react-router-dom';
+import ErrorContent from './routes/ErrorContent';
 
 export const DatabaseContext = createContext(null)
 export const ThemeContext = createContext(false)
@@ -31,6 +32,7 @@ function App() {
                 <Routes>
                   <Route path='/' element={<HomePage options={options} />} />
                   <Route path='/country/:idCountry' element={<CountryPage />} />
+                  <Route path='*' element={<ErrorContent />} />
                 </Routes>
               </HashRouter>
             
