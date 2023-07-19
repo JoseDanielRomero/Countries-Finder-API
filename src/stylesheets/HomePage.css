@@ -26,6 +26,7 @@
 
 .main-content-section {
     height: auto;
+    width: 100%;
     display: grid; 
     grid-auto-rows: 320px; 
     grid-template-columns: 21% 21% 21% 21%; 

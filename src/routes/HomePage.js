@@ -20,7 +20,14 @@ function HomePage({ options }) {
 
       const url = 'https://restcountries.com/v3.1/' + actualRegion
       const api = await axios.get(url)
-      setDatabase(api.data)
+        .then((api) => {
+          setDatabase(api.data)
+        })
+        .catch(() => {
+          console.log('Error 404, no results found.')
+          setDatabase([])
+        });
+      
 
     }
 
