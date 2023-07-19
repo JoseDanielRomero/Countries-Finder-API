@@ -29,3 +29,13 @@
 .country-card-item.dark {
     color: white;
 }
+
+@media screen and (max-width: 480px) {
+
+    .country-card-image {
+        border-top-left-radius: 10px;
+        border-top-right-radius: 10px;
+    }
+
+
+}

@@ -70,3 +70,32 @@
 .button-theme-image {
     height: 15px;
 }
+
+@media screen and (max-width: 480px) {
+
+    .header {
+        height: 10vh;
+        padding: 0 7%;
+    }
+
+    .logo {
+        font-size: 1.2rem;
+        margin: 0;
+    }
+
+    .button-theme {
+        gap: 4px;
+    }
+
+    .button-theme-title {
+        font-size: .9rem;
+        margin: 0;
+        font-weight: 600;
+        color: black;
+    }
+
+    .button-theme-image {
+        height: 12px;
+    }
+
+}

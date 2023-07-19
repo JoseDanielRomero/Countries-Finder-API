@@ -65,3 +65,22 @@
     text-decoration: none;
     color: black;
 }
+
+@media screen and (max-width: 480px) {
+
+    .main-content-section {
+        grid-template-columns: 80%; 
+        gap: 35px 0px;
+        justify-content: center; 
+        padding: 2vh 0;
+    }
+
+    .main-home {
+        padding: 0 7%;
+    }
+
+    .country-card-container {
+        border-radius: 10px;
+    }
+
+}
