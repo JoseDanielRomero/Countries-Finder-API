@@ -9,7 +9,6 @@
 }
 
 .main-home {
-    height: 100%;
     width: 100%;
     padding: 0 10%;
     display: flex;
@@ -18,6 +17,14 @@
     justify-content: flex-start;
     background-color: hsl(0, 0%, 95%);
     transition: ease background-color .2s;
+}
+
+.main-home.normal-height {
+    height: 100%;
+}
+
+.main-home.reduced-height {
+    height: 76vh;
 }
 
 .main-home.dark {

@@ -49,7 +49,7 @@ function Navbar({ options }) {
         <input
           type='text' 
           className={handleThemeInput} 
-          placeholder='Search for a country...'
+          placeholder='Search for a country (at least 3 characters)'
           spellCheck='false'
           autoComplete='none'
           value={search}

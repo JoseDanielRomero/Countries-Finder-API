@@ -35,13 +35,28 @@ function HomePage({ options }) {
 
   },[actualRegion])  
 
-  const handleClassThemeMain = darkMode == false ? 'main-home' : 'main-home dark'
+  const handleClassThemeMain = () => {
+    const copyDatabase = [...database]
+    let baseClass = 'main-home'
+
+    if (darkMode == true) {
+      baseClass = baseClass + ' dark'
+    }
+    if (copyDatabase.length < 5) {
+      baseClass = baseClass + ' reduced-height'
+    } else {
+      baseClass = baseClass + ' normal-height'
+    }
+
+    return baseClass
+  }
+  
   const handleThemeCard = darkMode == false ? 'country-card-container' : 'country-card-container dark'
 
   return (
       <div className='HomePage'>
         <HeaderContent />
-        <main className={handleClassThemeMain}>
+        <main className={handleClassThemeMain()}>
           <Navbar options={options} />
           <section className='main-content-section'>
             {database.map(card => {
