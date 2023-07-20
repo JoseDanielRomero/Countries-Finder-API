@@ -1,7 +1,7 @@
 import { NavLink } from 'react-router-dom';
 import { DatabaseContext, RegionContext, ThemeContext } from '../App';
 import axios from 'axios';
-import { useContext, useEffect } from 'react';
+import { useContext, useEffect, useRef, useState } from 'react';
 import '../stylesheets/HomePage.css'
 import HeaderContent from '../components/HeaderContent';
 import Navbar from '../components/Navbar';
@@ -13,6 +13,9 @@ function HomePage({ options }) {
   const { database, setDatabase } = useContext(DatabaseContext)
   const { darkMode } = useContext(ThemeContext)
   const { actualRegion, setActualRegion } = useContext(RegionContext)
+
+  const windowWidth = useRef(window.innerWidth)
+  const windowWidthFix = windowWidth.current
 
   useEffect(() => {
 
@@ -35,17 +38,26 @@ function HomePage({ options }) {
 
   },[actualRegion])  
 
-  const handleClassThemeMain = () => {
+  const handleClassThemeMain = (width) => {
     const copyDatabase = [...database]
     let baseClass = 'main-home'
 
     if (darkMode == true) {
       baseClass = baseClass + ' dark'
     }
-    if (copyDatabase.length < 5) {
-      baseClass = baseClass + ' reduced-height'
+    
+    if (width < 480) {
+      if (copyDatabase.length < 2) {
+        baseClass = baseClass + ' reduced-height'
+      } else {
+        baseClass = baseClass + ' normal-height'
+      }
     } else {
-      baseClass = baseClass + ' normal-height'
+      if (copyDatabase.length < 5) {
+        baseClass = baseClass + ' reduced-height'
+      } else {
+        baseClass = baseClass + ' normal-height'
+      }
     }
 
     return baseClass
@@ -56,7 +68,7 @@ function HomePage({ options }) {
   return (
       <div className='HomePage'>
         <HeaderContent />
-        <main className={handleClassThemeMain()}>
+        <main className={handleClassThemeMain(windowWidthFix)}>
           <Navbar options={options} />
           <section className='main-content-section'>
             {database.map(card => {
