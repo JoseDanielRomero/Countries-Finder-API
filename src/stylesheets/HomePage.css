@@ -83,4 +83,8 @@
         border-radius: 10px;
     }
 
+    .main-home.reduced-height {
+        height: 75vh;
+    }
+
 }

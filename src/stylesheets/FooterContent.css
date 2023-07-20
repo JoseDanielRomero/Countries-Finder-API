@@ -9,6 +9,13 @@
     transition: ease background-color .2s;
 }
 
+.footer-minibox {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+}
+
 .footer.dark {
     color: white;
     background-color: hsl(207, 26%, 17%);
@@ -16,10 +23,6 @@
 
 .footer-text {
     margin: 0;
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: center;
 }
 
 .github-icon {
@@ -31,4 +34,12 @@
 
 .github-icon.dark {
     filter: invert(1);
+}
+
+@media screen and (max-width: 480px) {
+
+    .footer {
+        flex-direction: column;
+    }
+
 }

@@ -11,7 +11,13 @@ function FooterContent() {
 
   return (
     <footer className={handleThemeFooterBox}>
-      <p className='footer-text'>created by José Daniel Romero <a title='Github page' href='https://github.com/JoseDanielRomero' target='_blank'><img src={githubIcon} className={handleThemeFooterIcon} alt='Github page'/></a> - frontendmentor.io</p>
+      <div className='footer-minibox'>
+        <p className='footer-text'>created by José Daniel Romero </p>
+        <a title='Github page' href='https://github.com/JoseDanielRomero' target='_blank'><img src={githubIcon} className={handleThemeFooterIcon} alt='Github page'/></a>
+      </div>
+      <div className='footer-minibox'>
+        <p className='footer-text'> - frontendmentor.io</p>
+      </div>
     </footer>
   )
 }

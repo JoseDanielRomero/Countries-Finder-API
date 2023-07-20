@@ -175,3 +175,64 @@
 .border-countries-button:link, .border-countries-button:visited, .border-countries-button:active {
     text-decoration: none;
 }
+
+@media screen and (max-width: 480px) {
+
+    .CountryPage {
+        height: auto;
+    }
+
+    .main-country {
+        height: 100%;
+    }
+
+    .navbar-country {
+        width: 86vw;
+        margin: 4vh 0;
+    }
+
+    .country-result-container {
+        /* height: auto; */
+        padding: 0 7%;
+        flex-direction: column;
+        justify-content: flex-start;
+    }
+
+    .country-result-info-title {
+        margin-top: 25px;
+        margin-bottom: 10px;
+    }
+
+    .country-result-image {
+        height: 200px;
+        width: 100%;
+    }
+
+    .country-result-info-text {
+        flex-direction: column;
+    }
+
+    .country-result-info-box {
+        height: auto;
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        justify-content: space-between;
+        margin-bottom: 1vh;
+    }
+
+    .country-result-info-column {
+        width: 100%;
+        margin-bottom: 10px;
+    }
+
+    .country-result-info-border-box {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        justify-content: flex-start;
+        gap: 10px;
+    }
+
+}

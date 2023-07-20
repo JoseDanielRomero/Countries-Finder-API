@@ -1,7 +1,7 @@
 import { NavLink } from 'react-router-dom';
 import { DatabaseContext, RegionContext, ThemeContext } from '../App';
 import axios from 'axios';
-import { useContext, useEffect, useRef, useState } from 'react';
+import { useContext, useEffect, useRef } from 'react';
 import '../stylesheets/HomePage.css'
 import HeaderContent from '../components/HeaderContent';
 import Navbar from '../components/Navbar';
@@ -12,7 +12,7 @@ function HomePage({ options }) {
 
   const { database, setDatabase } = useContext(DatabaseContext)
   const { darkMode } = useContext(ThemeContext)
-  const { actualRegion, setActualRegion } = useContext(RegionContext)
+  const { actualRegion } = useContext(RegionContext)
 
   const windowWidth = useRef(window.innerWidth)
   const windowWidthFix = windowWidth.current

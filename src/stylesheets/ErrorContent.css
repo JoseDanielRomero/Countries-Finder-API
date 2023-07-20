@@ -58,3 +58,17 @@
 .main-error-link:visited, .main-error-link-button:active {
     text-decoration: none;
 }
+
+@media screen and (max-width: 480px) {
+
+    .main-error-title {
+        text-align: center;
+        margin-bottom: 1vh;
+    }
+
+    .main-error-image {
+        height: auto;
+        width: 50%;
+    }
+
+}
