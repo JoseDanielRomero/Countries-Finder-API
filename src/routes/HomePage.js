@@ -71,6 +71,8 @@ function HomePage({ options }) {
         <main className={handleClassThemeMain(windowWidthFix)}>
           <Navbar options={options} />
           <section className='main-content-section'>
+          {database.length == 0 && <div className='loader-home'></div>}
+
             {database.map(card => {
 
               const navlinkTo = '/country/' + (card.cca3).toLowerCase()

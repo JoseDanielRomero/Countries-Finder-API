@@ -47,6 +47,7 @@ function CountryPage() {
             <p style={{fontSize: '.9rem'}}>Back</p>
           </NavLink>
         </nav>
+        {requestCountry.length == 0 && <article className='loader-container-country'><div className='loader-country'></div></article>}
 
         {requestCountry.map(country => {
 
